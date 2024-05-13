@@ -16,6 +16,15 @@ function Calculator({ workouts, allowSound }) {
 		[number, sets, speed, durationBreak]
 	);
 
+	// FOR STALE CLOSURES
+	useEffect(
+		function () {
+			console.log(duration);
+			document.title = `Your ${number}-exercise workout`;
+		},
+		[number, duration]
+	);
+
 	useEffect(
 		function () {
 			const playSound = function playSound() {
@@ -29,7 +38,6 @@ function Calculator({ workouts, allowSound }) {
 		[duration, allowSound]
 	);
 
-	// const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak;
 	const mins = Math.floor(duration);
 	const seconds = (duration - mins) * 60;
 
